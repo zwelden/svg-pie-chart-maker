@@ -71,6 +71,12 @@
     }
   };
 
+  SvgPieChart.prototype.sortDataset = function () {
+    this.dataset.sort(function (a, b) {
+      return (b.percent - a.percent);
+    });
+  };
+
   SvgPieChart.prototype.constructSvg = function () {
     var svgCircleBaseHtml = this.pieSvg.svgOpen + this.pieSvg.svgClose;
     this.svgWrapperEl.innerHTML = svgCircleBaseHtml;
@@ -108,6 +114,7 @@
 
   SvgPieChart.prototype.initGraph = function () {
     this.setDatasetPercentages();
+    this.sortDataset();
     this.constructSvg();
     this.constructPieGraphSections();
   };
